@@ -12,18 +12,16 @@ class Login extends CI_Controller
 	}
 	
 	function index(){
-		$this->cek_sessiontrue();
-		$status = $this->session->userdata("status");
-		if($status == "login"){
-			redirect(base_url('c_rute'));
-		}
 		$this->load->view('login');
 	}
 
 	function cek_login(){
+
+		$username = $this->input->post('username');
+		$password = $this->input->post('password');
 		$data = array(
-			'username' => $this->input->post('username', TRUE),
-			'password' => $this->input->post('password', TRUE),
+			'username' => $username,
+			'password' => md5($password)
 			);
 
 		$hasil = $this->m_login->GetData($data);
@@ -35,13 +33,13 @@ class Login extends CI_Controller
 				$sess_data['status'] = 'login';
 			}
 			$this->session->set_userdata($sess_data);
-				redirect(base_url().'c_rute');
+				redirect(base_url().'c_reservation');
 		}
 		else {
 			$info='<div style="color:red">PERIKSA KEMBALI USERNAME DAN PASSWORD ANDA!</div>';
 			$this->session->set_userdata('info',$info);
 
-			redirect(base_url().'login');
+			redirect(base_url().'c_rute');
 
 		}
 	}

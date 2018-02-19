@@ -2,20 +2,20 @@
 /**
 * 
 */
-class C_Rute extends CI_Controller
+class C_User extends CI_Controller
 {
 	
 	function __construct()
 	{
 		parent::__construct();
 		$this->load->helper(array('url'));
-		$this->load->model("m_rute");
+		$this->load->model("m_user");
 	}
 
 	public function index(){
 		
 		$this->load->database();
-		$jumlah_data = $this->m_rute->jumlah_data();
+		$jumlah_data = $this->m_user->jumlah_data();
 		$this->load->library('pagination');
 
 		$config['base_url'] = base_url().'index.php/c_rute/index/';
@@ -47,24 +47,25 @@ class C_Rute extends CI_Controller
 
 		$from = $this->uri->segment(3);
 		$this->pagination->initialize($config);		
-		$data['rute'] = $this->m_rute->data($config['per_page'],$from);
+		$data['user'] = $this->m_user->data($config['per_page'],$from);
 		
-		$this->load->view('back/rute', $data);
+		$this->load->view('back/user', $data);
 	}
 
 	public function inputrute(){
+		$this->cek_sessionfalse();
 		$op = $this->input->post('op');
 		$id = $this->input->post('id');
+		$from = $this->input->post('asal');
+		$to = $this->input->post('tujuan');
 		$depart_at = $this->input->post('waktu');
-		$rute_from = $this->input->post('asal');
-		$rute_to = $this->input->post('tujuan');
 		$price = $this->input->post('harga');
 
 		$data = array(
 			
+			'rute_from' => $from,
+			'rute_to' => $to,
 			'depart_at' => $depart_at,
-			'rute_from' => $rute_from,
-			'rute_to' => $rute_to,
 			'price' => $price,
 
 			);
@@ -79,11 +80,12 @@ class C_Rute extends CI_Controller
 	}
 
 	public function hapus($id){
-		$this->m_rute->hapus($id);
-		redirect('c_rute');
+		$this->m_user->hapus($id);
+		redirect('c_user');
 	}
 
 	public function edit($id){
+		$this->cek_sessionfalse();
 		$data['op'] = 'edit';
 		$data['sql'] = $this->m_rute->edit($id);
 

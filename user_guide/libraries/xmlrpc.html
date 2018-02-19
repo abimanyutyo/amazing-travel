@@ -529,7 +529,7 @@ information:</p>
 <h4><a class="toc-backref" href="#id7">Explanation</a><a class="headerlink" href="#explanation" title="Permalink to this headline">¶</a></h4>
 <p>The above code initializes the XML-RPC class, sets the server URL and
 method to be called (weblogUpdates.ping). The request (in this case, the
-title and URL of your site) is placed into an array for transportation,
+title and URL of your site) is placed into an array for customer,
 and compiled using the request() function. Lastly, the full request is
 sent. If the send_request() method returns false we will display the
 error message sent back from the XML-RPC Server.</p>
@@ -542,7 +542,7 @@ server. Each piece of data in a request is referred to as a request
 parameter. The above example has two parameters: The URL and title of
 your site. When the XML-RPC server receives your request, it will look
 for parameters it requires.</p>
-<p>Request parameters must be placed into an array for transportation, and
+<p>Request parameters must be placed into an array for customer, and
 each parameter can be one of seven data types (strings, numbers, dates,
 etc.). If your parameters are something other than strings you will have
 to include the data type in the request array.</p>

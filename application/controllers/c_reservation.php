@@ -2,20 +2,20 @@
 /**
 * 
 */
-class C_Rute extends CI_Controller
+class C_Reservation extends CI_Controller
 {
 	
 	function __construct()
 	{
 		parent::__construct();
 		$this->load->helper(array('url'));
-		$this->load->model("m_rute");
+		$this->load->model("m_reservation");
 	}
 
 	public function index(){
 		
 		$this->load->database();
-		$jumlah_data = $this->m_rute->jumlah_data();
+		$jumlah_data = $this->m_reservation->jumlah_data();
 		$this->load->library('pagination');
 
 		$config['base_url'] = base_url().'index.php/c_rute/index/';
@@ -47,46 +47,55 @@ class C_Rute extends CI_Controller
 
 		$from = $this->uri->segment(3);
 		$this->pagination->initialize($config);		
-		$data['rute'] = $this->m_rute->data($config['per_page'],$from);
+		$data['reservation'] = $this->m_reservation->data($config['per_page'],$from);
 		
-		$this->load->view('back/rute', $data);
+		$this->load->view('back/reservation', $data);
 	}
 
-	public function inputrute(){
+	public function input(){
 		$op = $this->input->post('op');
 		$id = $this->input->post('id');
-		$depart_at = $this->input->post('waktu');
-		$rute_from = $this->input->post('asal');
-		$rute_to = $this->input->post('tujuan');
-		$price = $this->input->post('harga');
+		$reservation_code = $this->input->post('reservation_code');
+		$reservation_at = $this->input->post('reservation_at');
+		$reservation_date = $this->input->post('reservation_date');
+		$seat_code = $this->input->post('seat_code');
+		$customer_id = $this->input->post('customer_id');
+		$rute_id = $this->input->post('rute_id');
+		$depart_at = $this->input->post('depart_at');
+		$price = $this->input->post('price');
+		$user_id = $this->input->post('user_id');
 
 		$data = array(
 			
+			'reservation_code' => $reservation_code,
+			'reservation_at' => $reservation_at,
+			'reservation_date' => $reservation_date,
+			'seat_code' => $seat_code,
+			'customer_id' => $customer_id,
+			'rute_id' => $rute_id,
 			'depart_at' => $depart_at,
-			'rute_from' => $rute_from,
-			'rute_to' => $rute_to,
 			'price' => $price,
-
+			'user_id' => $user_id
 			);
 		if($op=="tambah"){
-			$this->m_rute->addrute($data);
-		}
+			$this->m_reservation->add($data);
+		}	
 		else{
-			$this->m_rute->update($id,$data);
+			$this->m_reservation->update($id,$data);
 		}
 	
-		redirect('c_rute');
+		redirect('c_reservation');
 	}
 
 	public function hapus($id){
-		$this->m_rute->hapus($id);
-		redirect('c_rute');
+		$this->m_reservation->hapus($id);
+		redirect('c_reservation');
 	}
 
 	public function edit($id){
 		$data['op'] = 'edit';
-		$data['sql'] = $this->m_rute->edit($id);
+		$data['sql'] = $this->m_reservation->edit($id);
 
-		$this->load->view('back/edit_rute',$data);	
+		$this->load->view('back/edit_reservation',$data);	
 	}
 }

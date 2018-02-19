@@ -2,20 +2,20 @@
 /**
 * 
 */
-class C_Rute extends CI_Controller
+class C_Transport extends CI_Controller
 {
 	
 	function __construct()
 	{
 		parent::__construct();
 		$this->load->helper(array('url'));
-		$this->load->model("m_rute");
+		$this->load->model("m_transport");
 	}
 
 	public function index(){
 		
 		$this->load->database();
-		$jumlah_data = $this->m_rute->jumlah_data();
+		$jumlah_data = $this->m_transport->jumlah_data();
 		$this->load->library('pagination');
 
 		$config['base_url'] = base_url().'index.php/c_rute/index/';
@@ -47,46 +47,44 @@ class C_Rute extends CI_Controller
 
 		$from = $this->uri->segment(3);
 		$this->pagination->initialize($config);		
-		$data['rute'] = $this->m_rute->data($config['per_page'],$from);
+		$data['transport'] = $this->m_transport->data($config['per_page'],$from);
 		
-		$this->load->view('back/rute', $data);
+		$this->load->view('back/transport', $data);
 	}
 
-	public function inputrute(){
+	public function inputtransport(){
 		$op = $this->input->post('op');
 		$id = $this->input->post('id');
-		$depart_at = $this->input->post('waktu');
-		$rute_from = $this->input->post('asal');
-		$rute_to = $this->input->post('tujuan');
-		$price = $this->input->post('harga');
+		$code = $this->input->post('code');
+		$description = $this->input->post('description');
+		$seat_qty = $this->input->post('seat_qty');
 
 		$data = array(
 			
-			'depart_at' => $depart_at,
-			'rute_from' => $rute_from,
-			'rute_to' => $rute_to,
-			'price' => $price,
+			'code' => $code,
+			'description' => $description,
+			'seat_qty' => $seat_qty
 
 			);
 		if($op=="tambah"){
-			$this->m_rute->addrute($data);
+			$this->m_transport->addtransport($data);
 		}
 		else{
-			$this->m_rute->update($id,$data);
+			$this->m_transport->update($id,$data);
 		}
 	
-		redirect('c_rute');
+		redirect('c_transport');
 	}
 
 	public function hapus($id){
-		$this->m_rute->hapus($id);
-		redirect('c_rute');
+		$this->m_transport->hapus($id);
+		redirect('c_transport');
 	}
 
 	public function edit($id){
 		$data['op'] = 'edit';
-		$data['sql'] = $this->m_rute->edit($id);
+		$data['sql'] = $this->m_transport->edit($id);
 
-		$this->load->view('back/edit_rute',$data);	
+		$this->load->view('back/edit_transport',$data);	
 	}
 }

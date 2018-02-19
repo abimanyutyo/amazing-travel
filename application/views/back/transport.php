@@ -335,6 +335,15 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
 
+      <li>
+          <a href="<?php echo base_url(); ?>assets/c_dashboard">
+            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+            <span class="pull-right-container">
+              
+            </span>
+          </a>
+        </li>
+
         <li class="active">
           <a href="<?php echo base_url(); ?>c_rute">
             <i class="fa fa-map"></i> <span>Rute</span>
@@ -370,14 +379,12 @@
         </li>
 
         <li>
-          <a href="<?php echo base_url(); ?>c_reservasi">
+          <a href="<?php echo base_url(); ?>c_reservation">
             <i class="fa fa-map"></i> <span>Reservation</span>
             <span class="pull-right-container">
             </span>
           </a>
         </li>
-
-
         
       
         <li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
@@ -395,11 +402,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Rute
+        Transportasi
         <small>Perjalanan Pesawat</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i>Rute</a></li>
+        <li><a href="#"><i class="fa fa-dashboard"></i>Transportasi</a></li>
         <li class="active">Dashboard</li>
       </ol>
     </section>
@@ -410,53 +417,39 @@
       <div class="col-md-6">
       <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title"> Rute Perjalanan </h3>
+              <h3 class="box-title"> Transportasi </h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form class="form-horizontal" method="POST" action="<?php echo base_url(); ?>c_rute/inputrute">
+            <form class="form-horizontal" method="POST" action="<?php echo base_url(); ?>c_transport/inputtransport">
               <div class="box-body">
 
                 <input type="hidden" name="op" value="<?php echo $op='tambah' ?>" class="form-control">
 
                 <div class="form-group">
                     <div class="col-sm-3">
-                          <label class="control-label"> From </label>
+                          <label class="control-label"> Code </label>
                     </div>
                   <div class="input-group col-sm-8">        
-                      <input name="asal" type="text" class="form-control" placeholder="Asal">
+                      <input name="code" type="text" class="form-control" placeholder="Code">
                   </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-sm-3">
-                          <label class="control-label"> To </label>
+                          <label class="control-label"> Description </label>
                     </div>
                   <div class="input-group col-sm-8">        
-                      <input name="tujuan" type="text" class="form-control" placeholder="Tujuan">
+                      <input name="description" type="text" class="form-control" placeholder="Description">
                   </div>
-                </div>
-
-                <div class="bootstrap-timepicker">
-                  <div class="form-group">
-                    <div class="col-sm-3">
-                            <label class="control-label"> Depart At </label>
-                    </div>
-                  <div class="input-group col-sm-8">
-                      <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
-                    <input name="waktu" type="time" class="form-control timepicker">
-                      
-                  </div>
-                  </div>
-                  <!-- /.input group -->
                 </div>
 
                  <div class="form-group">
                     <div class="col-sm-3">
-                          <label class="control-label"> Price </label>
+                          <label class="control-label">Seat Qty</label>
                     </div>
                   <div class="input-group col-sm-8">        
-                      <input name="harga" type="text" class="form-control" placeholder="Harga">
+                      <input name="seat_qty" type="number" min="0" class="form-control" placeholder="Seat Quantity">
                   </div>
                 </div>
 
@@ -493,27 +486,25 @@
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>From</th>
-                  <th>To</th>
-                  <th>Depart At</th>
-                  <th>Price</th>
+                  <th>Code</th>
+                  <th>Description</th>
+                  <th>Seat Qty</th>
                   <th>Action</th>
                 </tr>
                   <?php
                   $no=$this->uri->segment('3');;
-                  foreach ($rute as $obj1) {
+                  foreach ($transport as $obj1) {
                     $no++; 
                  ?> 
                 <tr>
                       <td><?php echo $no; ?></td>
-                      <td><?php echo $obj1->rute_from; ?></td>  
-                      <td><?php echo $obj1->rute_to; ?></td> 
-                      <td><?php echo $obj1->depart_at; ?></td> 
-                      <td>Rp <?php echo $obj1->price; ?></td>
+                      <td><?php echo $obj1->code; ?></td>  
+                      <td><?php echo $obj1->description; ?></td> 
+                      <td><?php echo $obj1->seat_qty; ?></td> 
                       <td>
-                        <a href="<?php echo base_url(); ?>c_rute/edit/<?php echo $obj1->id; ?>"><button type="button" class="btn btn-warning glyphicon glyphicon-edit"></button> </a>
+                        <a href="<?php echo base_url(); ?>c_transport/edit/<?php echo $obj1->id; ?>"><button type="button" class="btn btn-warning glyphicon glyphicon-edit"></button> </a>
 
-                        <a href="javascript:if(confirm('Anda yakin ingin menghapus data?')){document.location='<?php echo base_url(); ?>c_rute/hapus/<?php echo $obj1->id; ?>';}"><button type="button" class="btn btn-danger glyphicon glyphicon-trash"></button> </a>
+                        <a href="javascript:if(confirm('Anda yakin ingin menghapus data?')){document.location='<?php echo base_url(); ?>c_transport/hapus/<?php echo $obj1->id; ?>';}"><button type="button" class="btn btn-danger glyphicon glyphicon-trash"></button> </a>
                       </td>
 
                 </tr>

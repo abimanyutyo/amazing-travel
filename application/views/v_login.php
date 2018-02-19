@@ -35,7 +35,7 @@
 					<div class="col-sm-6 col-sm-offset-3">
 						<div class="panel panel-default" style="margin-top: 212px; margin-bottom:213px;border-radius: 40px;box-shadow: 5px 5px; color:#602869">
 							<div class="panel-body" >
-								<form method="post" action="<?php echo base_url('login/masuk');?>">
+								<form method="post" action="<?php echo base_url('login/cek_login');?>">
 									<div style="font-style:normal;" class="form-group kotak">
 										<div class="col-md-12">
 											<label for="username">Username</label>

@@ -335,6 +335,15 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
 
+      <li>
+          <a href="<?php echo base_url(); ?>assets/c_dashboard">
+            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+            <span class="pull-right-container">
+              
+            </span>
+          </a>
+        </li>
+
         <li class="active">
           <a href="<?php echo base_url(); ?>c_rute">
             <i class="fa fa-map"></i> <span>Rute</span>
@@ -356,7 +365,6 @@
           <a href="<?php echo base_url(); ?>c_transport">
             <i class="fa fa-map"></i> <span>Transport</span>
             <span class="pull-right-container">
-              <small class="label pull-right bg-green">input</small>
             </span>
           </a>
         </li>
@@ -376,7 +384,6 @@
             </span>
           </a>
         </li>
-
 
         
       
@@ -410,72 +417,16 @@
       <div class="col-md-6">
       <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title"> Rute Perjalanan </h3>
+              <h3 class="box-title"> User </h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form class="form-horizontal" method="POST" action="<?php echo base_url(); ?>c_rute/inputrute">
-              <div class="box-body">
-
-                <input type="hidden" name="op" value="<?php echo $op='tambah' ?>" class="form-control">
-
-                <div class="form-group">
-                    <div class="col-sm-3">
-                          <label class="control-label"> From </label>
-                    </div>
-                  <div class="input-group col-sm-8">        
-                      <input name="asal" type="text" class="form-control" placeholder="Asal">
-                  </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-sm-3">
-                          <label class="control-label"> To </label>
-                    </div>
-                  <div class="input-group col-sm-8">        
-                      <input name="tujuan" type="text" class="form-control" placeholder="Tujuan">
-                  </div>
-                </div>
-
-                <div class="bootstrap-timepicker">
-                  <div class="form-group">
-                    <div class="col-sm-3">
-                            <label class="control-label"> Depart At </label>
-                    </div>
-                  <div class="input-group col-sm-8">
-                      <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
-                    <input name="waktu" type="time" class="form-control timepicker">
-                      
-                  </div>
-                  </div>
-                  <!-- /.input group -->
-                </div>
-
-                 <div class="form-group">
-                    <div class="col-sm-3">
-                          <label class="control-label"> Price </label>
-                    </div>
-                  <div class="input-group col-sm-8">        
-                      <input name="harga" type="text" class="form-control" placeholder="Harga">
-                  </div>
-                </div>
-
-                <div class="box-footer">
-                <button type="submit" class="btn btn-primary pull-right">Submit</button>
-              </div>
-              </div>
-
-                <!-- /.col -->
-              </div>
-              <!-- /.row -->
-            </div>
-          </form>
 
       <div class="row">
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Data Rute Perjalanan Pesawat</h3>
+              <h3 class="box-title">Data User</h3>
 
               <div class="box-tools">
                 <div class="input-group input-group-sm" style="width: 150px;">
@@ -493,27 +444,25 @@
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>From</th>
-                  <th>To</th>
-                  <th>Depart At</th>
-                  <th>Price</th>
+                  <th>Nama</th>
+                  <th>Username</th>
+                  <th>HP</th>
+                  <th>Email</th>
                   <th>Action</th>
                 </tr>
                   <?php
                   $no=$this->uri->segment('3');;
-                  foreach ($rute as $obj1) {
+                  foreach ($user as $obj1) {
                     $no++; 
                  ?> 
                 <tr>
                       <td><?php echo $no; ?></td>
-                      <td><?php echo $obj1->rute_from; ?></td>  
-                      <td><?php echo $obj1->rute_to; ?></td> 
-                      <td><?php echo $obj1->depart_at; ?></td> 
-                      <td>Rp <?php echo $obj1->price; ?></td>
+                      <td><?php echo $obj1->nama; ?></td>  
+                      <td><?php echo $obj1->username; ?></td> 
+                      <td><?php echo $obj1->hp; ?></td> 
+                      <td><?php echo $obj1->email; ?></td>
                       <td>
-                        <a href="<?php echo base_url(); ?>c_rute/edit/<?php echo $obj1->id; ?>"><button type="button" class="btn btn-warning glyphicon glyphicon-edit"></button> </a>
-
-                        <a href="javascript:if(confirm('Anda yakin ingin menghapus data?')){document.location='<?php echo base_url(); ?>c_rute/hapus/<?php echo $obj1->id; ?>';}"><button type="button" class="btn btn-danger glyphicon glyphicon-trash"></button> </a>
+                        <a href="javascript:if(confirm('Anda yakin ingin menghapus data?')){document.location='<?php echo base_url(); ?>c_user/hapus/<?php echo $obj1->id; ?>';}"><button type="button" class="btn btn-danger glyphicon glyphicon-trash"></button> </a>
                       </td>
 
                 </tr>

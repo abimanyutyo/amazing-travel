@@ -2,20 +2,20 @@
 /**
 * 
 */
-class C_Rute extends CI_Controller
+class C_Customer extends CI_Controller
 {
 	
 	function __construct()
 	{
 		parent::__construct();
 		$this->load->helper(array('url'));
-		$this->load->model("m_rute");
+		$this->load->model("m_customer");
 	}
 
 	public function index(){
 		
 		$this->load->database();
-		$jumlah_data = $this->m_rute->jumlah_data();
+		$jumlah_data = $this->m_customer->jumlah_data();
 		$this->load->library('pagination');
 
 		$config['base_url'] = base_url().'index.php/c_rute/index/';
@@ -47,46 +47,48 @@ class C_Rute extends CI_Controller
 
 		$from = $this->uri->segment(3);
 		$this->pagination->initialize($config);		
-		$data['rute'] = $this->m_rute->data($config['per_page'],$from);
+		$data['customer'] = $this->m_customer->data($config['per_page'],$from);
 		
-		$this->load->view('back/rute', $data);
+		$this->load->view('back/customer', $data);
 	}
 
-	public function inputrute(){
+	public function inputcustomer(){
 		$op = $this->input->post('op');
 		$id = $this->input->post('id');
-		$depart_at = $this->input->post('waktu');
-		$rute_from = $this->input->post('asal');
-		$rute_to = $this->input->post('tujuan');
-		$price = $this->input->post('harga');
+		$name = $this->input->post('name');
+		$address = $this->input->post('address');
+		$phone = $this->input->post('phone');
+		$gender = $this->input->post('gender');
+		$email = $this->input->post('email');
 
 		$data = array(
 			
-			'depart_at' => $depart_at,
-			'rute_from' => $rute_from,
-			'rute_to' => $rute_to,
-			'price' => $price,
+			'name' => $name,
+			'address' => $address,
+			'phone' => $phone,
+			'gender' => $gender,
+			'email' => $email,
 
 			);
 		if($op=="tambah"){
-			$this->m_rute->addrute($data);
+			$this->m_customer->addcustomer($data);
 		}
 		else{
-			$this->m_rute->update($id,$data);
+			$this->m_customer->update($id,$data);
 		}
 	
-		redirect('c_rute');
+		redirect('c_customer');
 	}
 
 	public function hapus($id){
-		$this->m_rute->hapus($id);
-		redirect('c_rute');
+		$this->m_customer->hapus($id);
+		redirect('c_customer');
 	}
 
 	public function edit($id){
 		$data['op'] = 'edit';
-		$data['sql'] = $this->m_rute->edit($id);
+		$data['sql'] = $this->m_customer->edit($id);
 
-		$this->load->view('back/edit_rute',$data);	
+		$this->load->view('back/edit_customer',$data);	
 	}
 }

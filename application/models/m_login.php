@@ -5,7 +5,7 @@
       function cek($username, $password) {
         $this->db->where("username", $username);
         $this->db->where("password", $password);
-        return $this->db->get("tb_pengguna");
+        return $this->db->get("user");
       }
       function GetData($data) {
         $query = $this->db->get_where('user', $data);
