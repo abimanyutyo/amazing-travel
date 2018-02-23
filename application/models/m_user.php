@@ -23,6 +23,15 @@ class M_user extends CI_Model {
     function jumlah_data(){
         return $this->db->get('user')->num_rows();
     }
+    public function addcust($data){
+        $this->db->insert('customer',$data);
+    }
+
+    function getcustid($name){
+        $this->db->select('id');
+        $this->db->where('name', $name);
+        return $this->db->get('customer');
+    }
 
 }
 

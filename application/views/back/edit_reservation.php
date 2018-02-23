@@ -1,9 +1,30 @@
+<?php
+
+$id = "";
+$code = "";
+$description = "";
+$seat_qty = "";
+if($op=="edit"){
+    foreach ($sql->result() as $obj){
+         
+          $op = "edit";
+          $id = $obj->id;
+          $code = $obj->code;
+          $description = $obj->description;
+          $seat_qty = $obj->seat_qty;
+
+    }
+}
+?>
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Admin Flight | Dashboard</title>
+  <title>AdminLTE 2 | Dashboard</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -49,7 +70,7 @@
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>A</b>LT</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Admin</b>Flight</span>
+      <span class="logo-lg"><b>Admin</b>LTE</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -260,16 +281,16 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="<?php echo base_url(); ?>assets/admin/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs">Abimanyu</span>
+              <img src="<?php echo base_url(); ?>admin/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+              <span class="hidden-xs">Alexander Pierce</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="<?php echo base_url(); ?>assets/admin/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <img src="<?php echo base_url(); ?>admin/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                 <p>
-                  Abimanyu - Web Developer
+                  Alexander Pierce - Web Developer
                   <small>Member since Nov. 2012</small>
                 </p>
               </li>
@@ -294,7 +315,7 @@
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="<?php echo base_url(); ?>assets/c_rute/logout" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -314,10 +335,10 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="<?php echo base_url(); ?>assets/admin/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+          <img src="<?php echo base_url(); ?>admin/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Abimanyu</p>
+          <p>Alexander Pierce</p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
@@ -335,6 +356,15 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
 
+      <li>
+          <a href="<?php echo base_url(); ?>c_dashboard">
+            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+            <span class="pull-right-container">
+              
+            </span>
+          </a>
+        </li>
+
         <li class="active">
           <a href="<?php echo base_url(); ?>c_rute">
             <i class="fa fa-map"></i> <span>Rute</span>
@@ -343,41 +373,9 @@
             </span>
           </a>
         </li>
-
-        <li>
-          <a href="<?php echo base_url(); ?>c_user">
-            <i class="fa fa-map"></i> <span>User</span>
-            <span class="pull-right-container">
-            </span>
-          </a>
-        </li>
-
-        <li>
-          <a href="<?php echo base_url(); ?>c_transport">
-            <i class="fa fa-map"></i> <span>Transport</span>
-            <span class="pull-right-container">
-              <small class="label pull-right bg-green">input</small>
-            </span>
-          </a>
-        </li>
-
-        <li>
-          <a href="<?php echo base_url(); ?>c_customer">
-            <i class="fa fa-map"></i> <span>Customer</span>
-            <span class="pull-right-container">
-            </span>
-          </a>
-        </li>
-
-        <li>
-          <a href="<?php echo base_url(); ?>c_reservation">
-            <i class="fa fa-map"></i> <span>Reservation</span>
-            <span class="pull-right-container">
-            </span>
-          </a>
-        </li>
         
-     
+      
+        <li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
         <li class="header">LABELS</li>
         <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
         <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
@@ -392,11 +390,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Reservation
+        Rute
         <small>Perjalanan Pesawat</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i>Customer</a></li>
+        <li><a href="#"><i class="fa fa-dashboard"></i>Rute</a></li>
         <li class="active">Dashboard</li>
       </ol>
     </section>
@@ -407,96 +405,42 @@
       <div class="col-md-6">
       <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title"> Customer </h3>
+              <h3 class="box-title"> Transportasi </h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form class="form-horizontal" method="POST" action="<?php echo base_url(); ?>c_reservation/input">
-              <div class="box-body">
+            <form class="form-horizontal" method="POST" action="<?php echo base_url(); ?>c_transport/inputtransport">
+                        <input type="hidden" name="op" value="<?php echo $op; ?>" class="form-control">
 
-                <input type="hidden" name="op" value="<?php echo $op='tambah' ?>" class="form-control">
+                        <input type="hidden" name="id" value="<?php echo $id; ?>" class="form-control">
+              <div class="box-body">
 
                 <div class="form-group">
                     <div class="col-sm-3">
-                          <label class="control-label"> Reservation Code </label>
+                          <label class="control-label"> Code </label>
                     </div>
                   <div class="input-group col-sm-8">        
-                      <input name="reservation_code" type="text" class="form-control" placeholder="Reservation Code">
+                      <input name="code" type="text" class="form-control" placeholder="Code" value="<?php echo $code; ?>">
                   </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-sm-3">
-                          <label class="control-label"> Reservation At </label>
+                          <label class="control-label"> Description </label>
                     </div>
                   <div class="input-group col-sm-8">        
-                      <input name="reservation_at" type="date" class="form-control" placeholder="Reservation At">
+                      <input name="description" type="text" class="form-control" placeholder="Description" value="<?php echo $description; ?>">
                   </div>
                 </div>
 
                  <div class="form-group">
                     <div class="col-sm-3">
-                          <label class="control-label">Reservation Date</label>
+                          <label class="control-label"> Seat Qty </label>
                     </div>
                   <div class="input-group col-sm-8">        
-                      <input name="reservation_date" type="date" class="form-control" placeholder="Reservation Date">
+                      <input name="seat_qty" type="number" class="form-control" placeholder="Seat Qty" value="<?php echo $seat_qty; ?>">
                   </div>
                 </div>
-
-                <div class="form-group">
-                    <div class="col-sm-3">
-                          <label class="control-label">Seat Code</label>
-                    </div>
-                  <div class="input-group col-sm-8">        
-                      <input name="seat_code" type="text" class="form-control" placeholder="Seat Code">
-                  </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-sm-3">
-                          <label class="control-label">Customer Id</label>
-                    </div>
-                  <div class="input-group col-sm-8">        
-                      <input name="customer_id" type="text" class="form-control" placeholder="Customer Id">
-                  </div>
-                </div>
-
-                   <div class="form-group">
-                    <div class="col-sm-3">
-                          <label class="control-label">Rute Id</label>
-                    </div>
-                  <div class="input-group col-sm-8">        
-                      <input name="rute_id" type="text" class="form-control" placeholder="Rute Id">
-                  </div>
-                </div>
-
-                   <div class="form-group">
-                    <div class="col-sm-3">
-                          <label class="control-label">Depart At</label>
-                    </div>
-                  <div class="input-group col-sm-8">        
-                      <input name="depart_at" type="time" class="form-control" placeholder="Depart At">
-                  </div>
-                </div>
-
-                   <div class="form-group">
-                    <div class="col-sm-3"> 
-                          <label class="control-label">Price</label>
-                    </div>
-                  <div class="input-group col-sm-8">        
-                      <input name="price" type="text" class="form-control" placeholder="Price">
-                  </div>
-                </div>
-
-                   <div class="form-group">
-                    <div class="col-sm-3">
-                          <label class="control-label">User Id</label>
-                    </div>
-                  <div class="input-group col-sm-8">        
-                      <input name="user_id" type="text" class="form-control" placeholder="User Id">
-                  </div>
-                </div>
-
 
                 <div class="box-footer">
                 <button type="submit" class="btn btn-primary pull-right">Submit</button>
@@ -513,7 +457,7 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Data Reservasi Perjalanan Pesawat</h3>
+              <h3 class="box-title">Rute yang akan di edit</h3>
 
               <div class="box-tools">
                 <div class="input-group input-group-sm" style="width: 150px;">
@@ -531,42 +475,18 @@
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>reservation code</th>
-                  <th>reservation at</th>
-                  <th>reservation date</th>
-                  <th>seat code</th>
-                  <th>customer id</th>
-                  <th>rute id</th>
-                  <th>depart at</th>
-                  <th>price</th>
-                  <th>user id</th>
+                  <th>Code</th>
+                  <th>Description</th>
+                  <th>Seat Qty</th>
+                
                 </tr>
-                  <?php
-                  $no=$this->uri->segment('3');;
-                  foreach ($reservation as $obj1) {
-                    $no++; 
-                 ?> 
                 <tr>
-                      <td><?php echo $no; ?></td>
-                      <td><?php echo $obj1->reservation_code; ?></td>  
-                      <td><?php echo $obj1->reservation_at; ?></td> 
-                      <td><?php echo $obj1->reservation_date; ?></td>
-                      <td><?php echo $obj1->seat_code; ?></td> 
-                      <td><?php echo $obj1->customer_id; ?></td> 
-                      <td><?php echo $obj1->rute_id; ?></td> 
-                      <td><?php echo $obj1->depart_at; ?></td> 
-                      <td><?php echo $obj1->price; ?></td> 
-                      <td><?php echo $obj1->user_id; ?></td> 
-                      <td>
-                        <a href="<?php echo base_url(); ?>c_reservation/edit/<?php echo $obj1->id; ?>"><button type="button" class="btn btn-warning glyphicon glyphicon-edit"></button> </a>  
-
-                        <a href="javascript:if(confirm('Anda yakin ingin menghapus data?')){document.location='<?php echo base_url(); ?>c_reservation/hapus/<?php echo $obj1->id; ?>';}"><button type="button" class="btn btn-danger glyphicon glyphicon-trash"></button> </a>
-                      </td>
+                      <td><?php echo '1' ?></td>
+                      <td><?php echo $code; ?></td>  
+                      <td><?php echo $description; ?></td> 
+                      <td><?php echo $seat_qty; ?></td> 
 
                 </tr>
-                <?php
-                  }
-                ?>
                 </thead>
                 
               </table>
@@ -795,43 +715,43 @@
 <!-- ./wrapper -->
 
 <!-- jQuery 3 -->
-<script src="<?php echo base_url(); ?>admin/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/admin/bower_components/jquery/dist/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
-<script src="<?php echo base_url(); ?>admin/bower_components/jquery-ui/jquery-ui.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/admin/bower_components/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
   $.widget.bridge('uibutton', $.ui.button);
 </script>
 <!-- Bootstrap 3.3.7 -->
-<script src="<?php echo base_url(); ?>admin/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/admin/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- Morris.js charts -->
-<script src="<?php echo base_url(); ?>admin/bower_components/raphael/raphael.min.js"></script>
-<script src="<?php echo base_url(); ?>admin/bower_components/morris.js/morris.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/admin/bower_components/raphael/raphael.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/admin/bower_components/morris.js/morris.min.js"></script>
 <!-- Sparkline -->
-<script src="<?php echo base_url(); ?>admin/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/admin/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
 <!-- jvectormap -->
-<script src="<?php echo base_url(); ?>admin/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
-<script src="<?php echo base_url(); ?>admin/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+<script src="<?php echo base_url(); ?>assets/admin/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/admin/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
 <!-- jQuery Knob Chart -->
-<script src="<?php echo base_url(); ?>admin/bower_components/jquery-knob/dist/jquery.knob.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/admin/bower_components/jquery-knob/dist/jquery.knob.min.js"></script>
 <!-- daterangepicker -->
-<script src="<?php echo base_url(); ?>admin/bower_components/moment/min/moment.min.js"></script>
-<script src="<?php echo base_url(); ?>admin/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script src="<?php echo base_url(); ?>assets/admin/bower_components/moment/min/moment.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/admin/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
 <!-- datepicker -->
-<script src="<?php echo base_url(); ?>admin/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/admin/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 <!-- Bootstrap WYSIHTML5 -->
-<script src="<?php echo base_url(); ?>admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 <!-- Slimscroll -->
-<script src="<?php echo base_url(); ?>admin/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/admin/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
-<script src="<?php echo base_url(); ?>admin/bower_components/fastclick/lib/fastclick.js"></script>
+<script src="<?php echo base_url(); ?>assets/admin/bower_components/fastclick/lib/fastclick.js"></script>
 <!-- AdminLTE App -->
-<script src="<?php echo base_url(); ?>admin/dist/js/adminlte.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/admin/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="<?php echo base_url(); ?>admin/plugins/timepicker/bootstrap-timepicker.min.js"></script>
-<script src="<?php echo base_url(); ?>admin/dist/js/pages/dashboard.js"></script>
+<script src="<?php echo base_url(); ?>assets/admin/plugins/timepicker/bootstrap-timepicker.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/admin/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="<?php echo base_url(); ?>admin/dist/js/demo.js"></script>
+<script src="<?php echo base_url(); ?>assets/admin/dist/js/demo.js"></script>
 <script type="text/javascript">
 
     //Timepicker

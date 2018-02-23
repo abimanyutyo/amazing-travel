@@ -47,7 +47,7 @@ class Login extends CI_Controller
 	function logout()
 	{
 		$this->session->sess_destroy();
-		redirect(base_url('welcome'));
+		redirect(base_url('landing'));
 	}
 	public function cek_sessiontrue(){
     	$sesion = $this->session->status;

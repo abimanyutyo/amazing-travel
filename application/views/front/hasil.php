@@ -1,4 +1,5 @@
-<!--
+
+	<!--
 Author: W3layouts
 Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
@@ -63,6 +64,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="logo wow fadeInDown animated" data-wow-delay=".5s">
 			<a href="<?php echo base_url(); ?>landing">Amazing <span>Travel</span></a>	
 		</div>
+		<div class="bus wow fadeInUp animated" data-wow-delay=".5s">
+            <a href="index.html" class="buses active">PESAWAT</a>
+            
+        </div>
         <!--
 		<div class="lock fadeInDown animated" data-wow-delay=".5s"> 
 			<li><i class="fa fa-lock"></i></li>
@@ -113,60 +118,37 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 </div>
 <div class="container">
-	<div class="col-md-5 bann-info1 wow fadeInLeft animated" data-wow-delay=".5s">
-		<i class="fa fa-columns"></i>
-		<h3>WORLD'S MOST TRAVEL BRAND</h3>
-	</div>
-	<div class="col-md-7 bann-info wow fadeInRight animated" data-wow-delay=".5s">
+<center>	
+<div class="row">
+	<div class="col-md-12 bann-info wow fadeInRight animated" data-wow-delay=".5s">
 		<h2>Online Tickets with Zero Booking Fees</h2>
-		<form action="<?php echo base_url('landing/carirute')?>" method="get">
-		<div class="ban-top">
-			<div class="bnr-left">
-				<label class="inputLabel">From</label>
-				<select name="dari">
-				<?php foreach ($dari as $d) { ?>
-					<option><?php echo $d->rute_from ?></option>
-					<?php } ?>
-				</select>
-				<!-- <input class="city" type="text" value="Enter a city" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter a city';}" required=> -->
-			</div>
-			<div class="bnr-left">
-				<label class="inputLabel">To</label>
-				<select name="ke">
-				<?php foreach ($ke as $k) { ?>
-					<option><?php echo $k->rute_to ?></option>
-					<?php } ?>
-				</select>
-			</div>
-				<div class="clearfix"></div>
-		</div>
-		<div class="ban-bottom">
-			<div class="bnr-right">
-				<label class="inputLabel">Date of Journey</label>
-				<input class="date" id="datepicker" type="text" value="dd-mm-yyyy" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'dd-mm-yyyy';}" required=>
-			</div>
-			<div class="bnr-right">
-				<label class="inputLabel">Date of Return<span class="opt">&nbsp;(Optional)</span></label>
-				<input class="date" id="datepicker1" type="text" value="dd-mm-yyyy" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'dd-mm-yyyy';}" required=>
-			</div>
-				<div class="clearfix"></div>
-				<!---start-date-piker---->
-				<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery-ui.css" />
-				<script src="<?php echo base_url(); ?>assets/js/jquery-ui.js"></script>
-					<script>
-						$(function() {
-						$( "#datepicker,#datepicker1" ).datepicker();
-						});
-					</script>
-			<!---/End-date-piker---->
-		</div>
-		<div class="sear">
-
-				<button type="submit" class="seabtn">Search</button>
-		
-		</div>
-		</form>
+		<?php $no=0 ; foreach($rute as $r) { $no++ ?>
+		<table width="70%" class="table table-striped">
+			<thead><tr height="30px">
+				<td>#</td>
+				<td>From</td>
+				<td>To</td>
+				<td>Depart</td>
+				<td>Price</td>
+			</tr>
+			</thead>
+			<tbody>	
+			<tr>
+				<td><?php echo $no; ?></td>
+				<td><?php echo $r->rute_from ?></td>
+				<td><?php echo $r->rute_to ?></td>
+				<td><?php echo $r->depart_at ?></td>
+				<td><?php echo $r->price ?></td> 
+				<td><a href="<?php echo base_url(); ?>landing/booking/<?php echo $r->id.'/'.$r->transportation_id; ?>"><button class="btn btn-primary">Book</button></a></td>
+			</tr>
+			</tbody>
+		</table>
+				
+			<?php } ?>
 	</div>
+
+		</div>
+	</center>
 	<div class="clearfix"></div>
 </div>
 

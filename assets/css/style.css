@@ -140,7 +140,7 @@ i.fa.fa-lock {
 /*-- /header --*/
 /*-- banner --*/
 .banner {
-    background: url(../images/3.jpg)no-repeat;
+    background: url(../images/10.jpg)no-repeat;
     background-size: cover;
     -webkit-background-size: cover;
     -o-background-size: cover;
@@ -416,7 +416,7 @@ i.fa.fa-truck,i.fa.fa-user,i.fa.fa-ticket {
     margin: 0 10px;
 	font-size: 14px;
     color: #fff;
-}
+
 .footer-btm li a {
     font-size: 15px;
     color: #fff;
@@ -450,7 +450,7 @@ i.fa.fa-truck,i.fa.fa-user,i.fa.fa-ticket {
 /*-- /footer --*/
 /*-- bus --*/
 .banner-1 {
-    background: url(../images/3.jpg)no-repeat;
+    background: url(../images/10.jpg)no-repeat;
     background-size: cover;
     -webkit-background-size: cover;
     -o-background-size: cover;

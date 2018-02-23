@@ -7,13 +7,38 @@ class Landing extends CI_Controller {
 		parent::__construct();
 		$this->load->helper(array('url'));
 		$this->load->model("m_user");
-	
+		$this->load->model('m_rute');
 	}
 
 	public function index()
 	{
 		$this->cek_sessiontrue();
-		$this->load->view('front/index');
+		$data['dari'] = $this->m_rute->dari()->result();
+		$data['ke'] = $this->m_rute->ke()->result();
+		$this->load->view('front/index',$data);
+	}
+
+	public function booking($idrute, $idtrans){
+		$data['idrute'] = $idrute;
+		$data['idtrans'] = $idtrans;
+		$this->load->view('booking', $data);
+	}
+
+	public function seat($idrute, $idtrans){
+
+		$data['idrute'] = $idrute;
+		$data['idtrans'] = $idtrans;
+		$data['seat_code'] = $this->m_rute->get_conditions('transportation', array('id'=>$idtrans))->result_array();
+
+		$this->load->view('seat', $data);
+	}
+
+	function reservasi(){
+		$idrute = $this->input->post('idrute');
+		$idtrans = $this->input->post('idtrans');
+		
+		
+
 	}
 
 	public function adduser(){
@@ -40,6 +65,24 @@ class Landing extends CI_Controller {
 	
 		redirect('landing');
 	}
+	public function savecust(){
+		$name = $this->input->post('name');
+		$address = $this->input->post('address');
+		$phone = $this->input->post('phone');
+		$email = $this->input->post('email');
+		$gender = $this->input->post('gender');
+		$idrute = $this->input->post('idrute');
+		$idtrans = $this->input->post('idtrans');
+		$data = array(
+			'name' => $name, 
+			'address' => $address, 
+			'phone' => $phone, 
+			'email' => $email,
+			'gender' => $gender, 
+			);
+		$this->m_user->addcust($data);
+		redirect(base_url('landing/seat/'.$idrute.'/'.$idtrans));
+	}
 	function logout()
 	{
 		$this->session->sess_destroy();
@@ -64,6 +107,20 @@ class Landing extends CI_Controller {
     	if(empty($sesion)){ 
       		redirect(base_url().'login');
          }
+     }
+
+     public function carirute(){
+     	$from = $this->input->get('dari');
+     	$to = $this->input->get('ke');
+
+     	$where = array(
+     		'rute_from' => $from,
+     		'rute_to' => $to
+     		);
+
+     	$data['rute'] = $this->m_rute->cari($where)->result();
+     	$this->load->view('front/hasil', $data);
+
      }
 
 }

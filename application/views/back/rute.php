@@ -247,29 +247,20 @@
                           <span class="sr-only">80% Complete</span>
                         </div>
                       </div>
+
                     </a>
                   </li>
                   <!-- end task item -->
                 </ul>
               </li>
-              <li class="footer">
-                <a href="#">View all tasks</a>
-              </li>
-            </ul>
-          </li>
-          <!-- User Account: style can be found in dropdown.less -->
-          <li class="dropdown user user-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="<?php echo base_url(); ?>assets/admin/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs">Alexander Pierce</span>
-            </a>
+
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
                 <img src="<?php echo base_url(); ?>assets/admin/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                 <p>
-                  Alexander Pierce - Web Developer
+                  Abimanyu - Web Developer
                   <small>Member since Nov. 2012</small>
                 </p>
               </li>
@@ -317,7 +308,7 @@
           <img src="<?php echo base_url(); ?>assets/admin/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Alexander Pierce</p>
+          <p>Abimanyu</p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
@@ -370,7 +361,7 @@
         </li>
 
         <li>
-          <a href="<?php echo base_url(); ?>c_reservasi">
+          <a href="<?php echo base_url(); ?>c_reservation">
             <i class="fa fa-map"></i> <span>Reservation</span>
             <span class="pull-right-container">
             </span>
@@ -378,9 +369,6 @@
         </li>
 
 
-        
-      
-        <li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
         <li class="header">LABELS</li>
         <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
         <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
@@ -444,8 +432,18 @@
                     </div>
                   <div class="input-group col-sm-8">
                       <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
-                    <input name="waktu" type="time" class="form-control timepicker">
-                      
+                    <input name="depart" type="time" class="form-control timepicker">
+                  </div>
+                  </div>
+
+                            <div class="bootstrap-timepicker">
+                  <div class="form-group">
+                    <div class="col-sm-3">
+                            <label class="control-label"> Landing At </label>
+                    </div>
+                  <div class="input-group col-sm-8">
+                      <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                    <input name="landing" type="time" class="form-control timepicker">
                   </div>
                   </div>
                   <!-- /.input group -->
@@ -456,7 +454,7 @@
                           <label class="control-label"> Price </label>
                     </div>
                   <div class="input-group col-sm-8">        
-                      <input name="harga" type="text" class="form-control" placeholder="Harga">
+                      <input name="price" type="text" class="form-control" placeholder="Harga">
                   </div>
                 </div>
 

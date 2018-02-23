@@ -55,16 +55,18 @@ class C_Rute extends CI_Controller
 	public function inputrute(){
 		$op = $this->input->post('op');
 		$id = $this->input->post('id');
-		$depart_at = $this->input->post('waktu');
 		$rute_from = $this->input->post('asal');
 		$rute_to = $this->input->post('tujuan');
-		$price = $this->input->post('harga');
+		$depart_at = $this->input->post('depart');
+		$landing_at = $this->input->post('landing');
+		$price = $this->input->post('price');
 
 		$data = array(
 			
-			'depart_at' => $depart_at,
 			'rute_from' => $rute_from,
 			'rute_to' => $rute_to,
+			'depart_at' => $depart_at,
+			'landing_at' =>$landing_at,
 			'price' => $price,
 
 			);
